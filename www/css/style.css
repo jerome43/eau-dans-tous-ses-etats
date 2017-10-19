@@ -1,0 +1,880 @@
+/* Empty. Add your own CSS if you like */
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-size: 1em;
+  font-family:gauntle;
+  color : #444;
+}
+
+
+
+h1, h2, h3 {
+  font-family: amatic-bold;
+  margin : 0;
+  color : #68a0d6;
+  text-transform: uppercase;
+  font-size: 1.2em;
+}
+h3 {
+  padding-bottom: 0.8em;
+}
+
+figcaption {
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+
+article {
+  text-align: justify;
+}
+
+
+#mapContainer>div.scroll {
+  height: 100%;
+}
+
+#map {
+width: 100%;
+height: 90%;
+}
+
+
+.scoreContainer {
+  padding: 0.1em;
+}
+
+.buttonMapContainerRight {
+  position: absolute;
+  top: 15px;
+  right : 15px;
+}
+
+.buttonMapContainerLeft {
+  position: absolute;
+  top: 15px;
+  left : 15px;
+}
+
+#etapeContainer {
+  padding: 0 3%;
+  font-size: 1.2em;
+  -webkit-transition-property: color;
+  -webkit-transition-duration: 3s;
+  transition-property: color;
+  transition-duration: 3s;
+}
+
+#etapeContainer span {
+  display: block;
+  margin-left: 2em;
+}
+
+
+#infoEtapeContainer {
+  height:10%;
+  background-color: #40b7a0;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* pour apparition progressive du texte*/
+#cacheInfoEtapeContainer {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: inherit;
+}
+
+.regle {
+  font-style: italic;
+  border : 2px  #68a0d6 dashed;
+  padding: 1em 1em 0.5em 1em;
+  margin : 1em;
+
+}
+
+@-webkit-keyframes animationMenu {
+  0% {background-color: rgba(64,183,160,1)}
+  100% {background-color: rgba(64,183,160,0)}
+}
+
+@-moz-keyframes animationMenu {
+  0% {background-color: rgba(64,183,160,1)}
+  100% {background-color: rgba(64,183,160,0)}
+}
+
+@keyframes animationMenu {
+  0% {background-color: rgba(64,183,160,1)}
+  100% {background-color: rgba(64,183,160,0)}
+}
+
+
+.iconPerso {
+  display: block;
+  float: left;
+  font-size: 1.3em;
+}
+
+
+#infoEtapeContent {
+}
+
+.title-perso {
+  color : #68a0d6;
+  font-weight: bold;
+}
+
+.title-little {
+  font-size : 0.6em;
+}
+
+.iontabpersooff {
+/*  color: #8a5038;*/
+}
+
+.iontabpersoon {
+
+/*  color: #fff;*/
+}
+
+/* surcharge ionic correspond à iontabperso*/
+.tab-item .icon {
+  line-height: 1.5;
+  height: 36px;
+  font-size: 28px;
+}
+
+
+ion-content img {
+  max-width: 100%;
+}
+
+.question {
+  margin : 20px 0;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* à rajouter car la couleur de bordure des bouton est réglée à transparent dans la dernière version de ionic*/
+
+.bar .button {
+  border-color: white;
+}
+
+
+.locateMeButtonBlue {
+  background-color: #68a0d6;
+  border-radius: 20px;
+  border-color : #444;
+  color: #fff;
+}
+.locateMeButton {
+  background-color:#fff;
+  border-radius: 20px;
+  border-color : #444;
+  color : #68a0d6;
+}
+
+
+#buttons {
+  position:absolute; top:0; right:0;
+  z-index:100;
+  background-color:white;
+  border-top-right-radius:1em;
+  padding:1em;
+}
+
+#status {
+  position:absolute; bottom:0; left:0;
+  z-index:100;
+  background-color:white;
+  border-top-right-radius:1em;
+  padding:1em;
+}
+
+.paddingTopIos {
+  /* utilisé pour compenser taiile du header + grand sur ios à cause de la barre de statut visible*/
+  padding-top: 20px;
+}
+
+.padding-bottom-perso {
+  padding-bottom: 60px;
+}
+
+/* to remplace a ionic-icon by a icon custom icon - used in tabs*/
+.ion-ios-person:before {
+  content: url('../img/icon/1X/man_icon_48.png') !important; }
+
+.ion-ios-body:before {
+  content: url('../img/icon/1X/children_icon_48.png') !important; }
+
+
+
+.titre {
+  font-family: amatic-bold;
+  padding: 30px 0 5px 40px;
+  font-size:2em;
+}
+
+.intro {
+  font-style: italic;
+  margin: 0;
+  padding: 1em;
+  font-size: 1em;
+  line-height: 120%;
+  text-align: justify;
+}
+
+.questions {
+  margin: 0 2em 1.5em;
+  padding: 1em;
+  background-color: rgba(104, 160, 214, 0.12);
+  color: #68a0d6;
+  border: 1px solid #68a0d6;
+  border-radius: 1em;
+  line-height: 120%;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.itemQuestions {
+  margin: auto;
+  font-size: 1.4em;
+}
+
+.itemInstruction {
+  margin : auto;
+  font-style: italic;
+  font-size: 1em;
+}
+
+.indexEtape {
+  position: relative;
+  top: -2em;
+  right: 3em;
+  text-align: right;
+  color: #68a0d6;
+}
+
+.itemQuestionResult {
+  padding: 1em;
+  font-size: 0.8em;
+  line-height: 120%;
+}
+
+.itemQuestionResult div>p:first-child>span {
+  display : none;
+}
+
+
+.mainInfoResult {
+  font-size: 22px;
+  line-height: 120%;
+  margin: 20px 0 0 0;
+  padding : 20px 200px 20px 30px;
+  background-color: #68a0d6;
+  color: white;
+  border: transparent;
+  border-radius: 30px 0 0 30px;
+  min-height: 148px;
+}
+
+.itemResults {
+}
+
+.resultDetail {
+  padding: 0.8em;
+  font-size: 1.1em;
+  border: 1px solid #68a0d6;
+  border-radius: 1em;
+  margin-top: 1em;
+  /* background-color: rgba(104, 160, 214, 0.12);*/
+}
+
+.resultMessage {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fc804f;
+  padding: 0;
+  text-align: center;
+}
+
+.resultGoodMessage {
+  font-weight: bold;
+  color: #aec12d;
+}
+
+
+.complement {
+  padding: 2em 1em;
+  font-size: 1em;
+  line-height: 120%;
+  text-align: justify;
+ /* color: #8a5038;*/
+}
+
+
+.audio {
+  margin: 1em auto;
+  text-align: center;
+}
+
+.audio p {
+  font-style : italic;
+}
+
+.btn-audio {
+  display: block;
+  margin: auto;
+  background-color: transparent;
+  color: #68a0d6;
+  font-size: 4em;
+  border: none;
+}
+
+
+.texteAccueil {
+  font-weight: bolder;
+  color:#68a0d6
+}
+.imgAccueil {
+  width:50%;
+  max-width: 300px;
+}
+
+
+.imgCenter {
+  display: block;
+  margin: 1em auto;
+}
+
+hr {
+  display: block;
+  margin: 1em auto;
+  border: solid thin #68a0d6;
+}
+
+
+.yellow {
+  color : #fcc554;
+  font-weight : bold;
+}
+
+
+.game {
+  /* marge gauche pour que l'utilisateur puisse scroller par le côté gauche*/
+  width: 95%;
+  margin-left:2.5%;
+  margin-left:2.5vw;
+  padding-bottom: 70px;
+}
+
+.logoMenu {
+  width: 30%;
+  max-width: 200px;
+}
+
+
+.theme0 {
+  /*min-height: 1280px; pour les mobiles ne supportant pas vh*/
+  /*min-height: 100vh;*/
+  padding-bottom: 44px; /* pour compenser le bar footer de 44px de hauteur*/
+  /*margin-bottom: 93px; pour compenser le header et tab de 93px de hauteur*/
+}
+
+.theme0Modal {
+ /* background: #fff url('../img/fond-appli-720x1280.jpg') no-repeat left bottom;
+  background-size: 100%;*/
+  padding: 1em 0.5em 44px 0.5em;
+  /*margin-bottom: 44px;  pour compenser le header de 44px de hauteur*/
+  /*min-height: 1280px; pour les mobiles ne supportant pas vh*/
+  /*min-height: 100vh;*/
+}
+
+
+.theme0 img, .theme0Modal img {
+  width: 100%;
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* Styles */
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+  /* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-320x480.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-320x480.jpg') no-repeat left bottom;
+  }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-ipad-768x1024.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-ipad-768x1024.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  /* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-ipad-768x1024.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-ipad-768x1024.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+  /* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-ipad-1536x2048.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-ipad-1536x2048.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .logoMenu {
+    display: block;
+    margin: 0.5em auto;
+    width: 200px;
+  }
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .logoMenu {
+    display: block;
+    margin: 0.5em auto;
+  }
+}
+
+/* iPhone 4 ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+/* iPhone 6 ----------- */
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+/* iPhone 6+ ----------- */
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+/* Samsung Galaxy S4 ----------- */
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+  /* Styles */
+}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 3){
+  /* Styles */
+}
+
+@media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+    background-size: 100%;
+  }
+}
+
+
+
+/* for android */
+/*
+
+@media screen and (max-resolution: 160dpi) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-320x480.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-320x480.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+}
+
+
+@media screen and (min-resolution: 161dpi) and (max-resolution: 360dpi) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-720x1280.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-720x1280.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+}
+
+@media screen and (min-resolution: 361dpi) and (max-resolution: 480dpi) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-960x1600.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+}
+
+@media screen and (min-resolution: 481dpi) {
+  .theme0 {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+
+  .theme0Modal {
+    background: #ffffff url('../img/fond-appli-1280x1920.jpg') no-repeat left bottom;
+       background-size: 100%;
+  }
+}
+*/
+
+
+.reponse {
+  /*margin: 0 0 0 100px;*/
+  padding-bottom: 2em;
+}
+
+.imgReponse {
+  width: 500px;
+  float: right;
+  margin: 70px -150px 0 10px;
+}
+
+button {
+  font-family: gauntle;
+}
+
+.btn-quiz {
+  font-family: gauntle;
+  background-color: rgba(104, 160, 214, 0.12);
+  border: 1px solid #68a0d6;
+  box-shadow: #777 15px 5px 10px;
+  border-radius: 0.5em;
+  font-size: 1em;
+  margin: 0 auto 1em;
+  line-height: 120%;
+  padding: 0.2em;
+  text-align: center;
+  display: block;
+  width: 75%;
+}
+
+
+.btn-quiz2 {
+  font-family: gauntle;
+  margin: auto;
+  font-weight: normal;
+}
+
+.btn-quiz input {
+  display: none;
+}
+
+
+.btn-quiz:active {
+  background-color: #aec12d;
+  border: 1px solid #ffffff;
+  color: #000;
+}
+
+.white {
+  background-color: #aec12d;
+  color: #ffffff;
+}
+
+.green {
+  background-color: #aec12d;
+  /*padding: 3px 7px;*/
+  border-radius: 5px;
+}
+
+.btn-green, button.button.icon.icon-checkmark-circle.button-positive.btn-green {
+  background-color: #aec12d;
+}
+
+.red {
+  /*
+  background-color: #fc804f;
+  */
+  padding: 3px 7px;
+  border-radius: 5px;
+  text-decoration: line-through
+}
+
+.strong {
+  font-weight: bold;
+}
+
+.margin {
+  font-size: 1.1em;
+  display: inline-block;
+  margin: 0.5em 0.3em;
+  padding: 0.4em 0.5em 0.2em;
+}
+
+
+*:focus {
+  outline: none;
+}
+.logo {
+}
+
+.logo img {
+  vertical-align: baseline;
+}
+
+.remerciements {
+  padding: 10px;
+  margin: 20px 40px 0 10px;
+  background-color: white;
+  border-radius : 15px;
+  color : #7d3511;
+  font-size: 15px;
+}
+
+.link {
+  color: #68a0d6;
+  text-decoration: underline;
+}
+
+/* loader de téléhargement */
+
+/* à garder pour désactiver le fond de couleur de $ionicLoading utilisé dans showSpinner*/
+.loading{
+  background-color: transparent !important;
+}
+
+
+.page-loader {
+  top: 50%;
+  position: absolute;
+  left: 50%;
+  z-index: 999;
+}
+
+.itemMenu {
+  background-color: #40b7a0;
+
+}
+a.itemMenu {
+  color:#fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.padding-top-75 {
+  padding-top: 75px;
+}
+
+
+@font-face {
+  font-family: font-awesome;
+  src: url('../fonts/fontawesome-webfont.woff2');
+}
+
+@font-face {
+  font-family: amatic;
+  src: url('../fonts/AmaticSC-Regular.ttf');
+}
+
+@font-face {
+  font-family: amatic-bold;
+  src: url('../fonts/Amatic-Bold.ttf');
+}
+
+@font-face {
+  font-family: gauntle;
+  src: url('../fonts/GauntletClassic_TB.otf');
+}
+
+
+/* surcharges ionic */
+.complement ul li {
+  list-style: disc inside;
+
+}
+
+
+.tabs {
+  /* background-color: #019c8e; !important;*/
+}
+
+
+.bar-footer {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+}
+
+/* pour rendre la scroll bar toujours visible : car on ne peut pas scroller dans les jeux */
+/*
+.ng-animate .scroll-bar {
+  visibility: visible !important;
+}
+
+.scroll-bar-fade-out{
+  opacity:1 !important
+}
+*/
+
+/* pour rendre la scroll bar un peu plus épaisse que la normale */
+
+.scroll-bar-v {
+  width: 10px;
+}
+
+/* bouton GPS et offline */
+
+.toggle-perso {
+  padding: 5px 55px 5px 5px;
+  font-size: 0.8em;
+  color:gray
+}
+
+.toggle-small.item-toggle.toggle-perso .toggle {
+  top:7px;
+}
+/* ------------ */
+

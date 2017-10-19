@@ -1,0 +1,331 @@
+
+<ion-view view-title="<span class='title-little'>étape&nbsp;{{indexEtape}}/{{dataEtape.etapeEnfant.length-1}}:</span>&nbsp;{{dataEtape.etapeEnfant[indexEtape].titre}}">
+
+  <ion-scroll zooming="true" delegate-handle="mainScroll" direction="xy" min-zoom="1" style="height: {{contentHeight-93}}px" class="has-tabs-top" on-swipe-right="onSwipeRight()" on-swipe-left="onSwipeLeft()">
+
+    <div class="theme0" ng-class="{paddingTopIos:isIos}" style="min-height: {{contentHeight}}px">
+
+
+    <!-- ************************ QUESTIONS QUIZ **************************** -->
+
+    <div ng-if="showQuizE[indexEtape]">
+
+      <!-- ************************ INTRODUCTION **************************** -->
+
+      <div>
+        <p class="intro" ng-bind-html="dataEtape.etapeEnfant[indexEtape].introduction"></p>
+        <!--span class='link' onclick='cordova.InAppBrowser.open("http://www.lasalvetat.fr/creee_par_la_nature/lhistoire_de_leau_de_la_salvetat_sur_agout.html", "_blank")'>lasalvetat.fr</span>
+        <span class='link' onclick="window.alert()">lasalvetat.fr</span></p-->
+      </div>
+
+      <div class="questions">
+        <p class="itemQuestions" ng-bind-html="dataEtape.etapeEnfant[indexEtape].questions">
+        </p>
+        <p class="itemInstruction" ng-bind-html="dataEtape.etapeEnfant[indexEtape].instruction  | unsafe">
+        </p>
+      </div>
+      <!--div class="indexEtape"><span style="font-size: 1.5em;">{{indexEtape}} </span> / {{dataEtape.etapeEnfant.length-1}}</div-->
+
+      <div ng-if="!dataEtape.etapeEnfant[indexEtape].game">
+
+        <div class="reponse" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='simple'  || dataEtape.etapeEnfant[indexEtape].quizType=='simple10'">
+            <div ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses">
+                <button  class="btn-quiz" on-touch="saveReponseE($index)" ng-class="{white:$index ==reponseQuiz[0]}">
+                        <span >
+                              <i class="fa" ng-class="{'fa-check':$index ==reponseQuiz[0]}" aria-hidden="true"></i>
+                            {{itemR}}
+                        </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="reponse" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='quizSonore'">
+          <div class="audio" ng-show="dataEtape.etapeEnfant[indexEtape].audio[1]!=null">
+            <h3>Qui émet ce chant ?</h3>
+            <p>Appuyez pour écouter le chant.</p>
+            <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etapeEnfant[indexEtape].audio[1])"></button>
+            <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+          </div>
+          <div ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses">
+            <button  class="btn-quiz" on-touch="saveReponseE($index)" ng-class="{white:$index ==reponseQuiz[0]}">
+              <span>
+                <i class="fa" ng-class="{'fa-check':$index ==reponseQuiz[0]}" aria-hidden="true"></i>
+                            {{itemR}}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <form class="reponse" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='multiple'" >
+            <div ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses">
+              <label class="btn-quiz" ng-class="{white: reponseQuiz[$index]}">
+                <div class="btn-quiz2">
+                  <input type="checkbox" ng-model="reponseQuiz[$index]" ng-change="saveReponseE()">
+                  <i class="fa" ng-class="{'fa-check':reponseQuiz[$index]}" aria-hidden="true"></i>
+                  {{itemR}}
+                </div>
+              </label>
+            </div>
+        </form>
+
+        <!--div get-width-e class="reponse" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='paysage'"-->
+        <div class="reponse" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='paysage'">
+          <!--img ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[1]}}" alt="paysage" usemap="#paysageE" style="display:block; margin:0 auto; width:95%">
+          <map name="paysageE">
+            <area shape="rect" coords="{{areaCoords[0][0]}},{{areaCoords[0][1]}},{{areaCoords[0][2]}},{{areaCoords[0][3]}}"  ng-if="quizMarkerPaysage[1][0]" on-touch="clickPaysageE($event, 0)" href="#">
+            <area shape="rect"  coords="{{areaCoords[1][0]}},{{areaCoords[1][1]}},{{areaCoords[1][2]}},{{areaCoords[1][3]}}"  ng-if="quizMarkerPaysage[1][1]" on-touch="clickPaysageE($event, 1)" href="#">
+            <area shape="rect"  coords="{{areaCoords[2][0]}},{{areaCoords[2][1]}},{{areaCoords[2][2]}},{{areaCoords[2][3]}}"  ng-if="quizMarkerPaysage[1][2]" on-touch="clickPaysageE($event, 2)" href="#">
+          </map-->
+          <div>
+            <img ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[1]}}" style="display:block; margin:0 auto; width:95%"/>
+            <img ng-src="img/icon/1X/focus.png" alt="touchez-moi pour affcher la question" ng-show="quizMarkerPaysage[1][0]" on-touch="clickPaysageE(0)" style="position: relative ; display:block ; top:calc(-350px/{{ratio}}); left : calc(620px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+            <img ng-src="img/icon/1X/focus_blank.png" alt="" ng-show="!quizMarkerPaysage[1][0]" style="position:relative ; display:block; top:calc(-350px/{{ratio}}); left : calc(620px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+            <img ng-src="img/icon/1X/focus.png" alt="touchez-moi pour affcher la question" ng-show="quizMarkerPaysage[1][1]" on-touch="clickPaysageE(1)" style="position: relative ; display:block ; top:calc(-250px/{{ratio}}); left : calc(70px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+            <img ng-src="img/icon/1X/focus_blank.png" alt="" ng-show="!quizMarkerPaysage[1][1]" style="position:relative ; display:block; top:calc(-250px/{{ratio}}); left : calc(70px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+            <img ng-src="img/icon/1X/focus.png" alt="touchez-moi pour affcher la question" ng-show="quizMarkerPaysage[1][2]" on-touch="clickPaysageE(2)" style="position: relative ; display:block ; top:calc(-170px/{{ratio}}); left : calc(50px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+            <img ng-src="img/icon/1X/focus_blank.png" alt="" ng-show="!quizMarkerPaysage[1][2]" style="position:relative ; display:block; top:calc(-170px/{{ratio}}); left : calc(50px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    <!-- ************************ QUESTIONS GAME **************************** -->
+
+    <div class="game" ng-if="dataEtape.etapeEnfant[indexEtape].game">
+        <game3e ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==3" id="game3e"></game3e>
+        <game4e ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==4" id="game4e"></game4e>
+        <game5e ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==5" id="game5e"></game5e>
+        <game7e ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==7" id="game7e"></game7e>
+        <game8e ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==8" id="game8e"></game8e>
+        <game11e ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==11" id="game11e"></game11e>
+    </div>
+
+    <div class="" ng-if="dataEtape.etapeEnfant[indexEtape].media!=undefined && dataEtape.etapeEnfant[indexEtape].media!=null">
+      <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].media"></p>
+    </div>
+
+  </div>
+
+  <!-- ************************ THE RESULT **************************** -->
+
+    <div ng-if="!showQuizE[indexEtape]">
+      <div class="itemQuestionResult" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='simple'">
+        <!--p class="resultMessage" ng-class="{resultGoodMessage:reponseQuiz[0] == dataEtape.etapeEnfant[indexEtape].indexBonneReponse}">{{message[indexEtape]}}</p-->
+        <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+        <div>
+          <p  ng-bind-html="dataEtape.etapeEnfant[indexEtape].questions"></p>
+          <div>
+                <span ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses">
+                    <!-- pour faire apparaître les réponses de l'utilisateur cochées et colorées en fonction des bonnes ou mauvaises -->
+                  <!--span class="margin" ng-class="{
+                              green:$index == dataEtape.etapeEnfant[indexEtape].indexBonneReponse,
+                              red:$index != dataEtape.etapeEnfant[indexEtape].indexBonneReponse && $index == reponseQuiz[0]}">
+                              <i class="fa" ng-class="{'fa-check':$index == reponseQuiz[0]}" aria-hidden="true"></i>
+                                  {{itemR}}
+                  </span-->
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etapeEnfant[indexEtape].indexBonneReponse}">
+                                {{itemR}}
+                    </span>
+               </span>
+          </div>
+        </div>
+
+        <div class="resultDetail" ng-if="dataEtape.etapeEnfant[indexEtape].resultDetail!=null && dataEtape.etapeEnfant[indexEtape].resultDetail!=undefined">
+
+          <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].resultDetail | unsafe">
+          </p>
+        </div>
+      </div>
+
+      <div class="itemQuestionResult" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='simple10'">
+        <!--p class="resultMessage" ng-class="{resultGoodMessage:reponseQuiz[0] == dataEtape.etapeEnfant[indexEtape].indexBonneReponse}">{{message[indexEtape]}}</p-->
+        <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+        <div>
+          <p>Le barrage du Lac de La Raviège a pour rôle principal de stocker l’eau pour la production d’électricité. Mais savez-vous que ce barrage a une autre fonction. Laquelle&nbsp;?</p>
+          <div>
+            <span><span class="margin">L’irrigation pour l’agriculture (amener de l’eau dans les cultures ou les champs)</span></span>
+            <span><span class="margin green">Les loisirs aquatiques (navigation, baignade)</span></span>
+            <span><span class="margin">Stocker de l’eau potable pour la consommation des habitants de La Salvetat</span></span>
+            <span><span class="margin">L’élevage de poissons</span></span>
+          </div>
+        </div>
+        <div>
+          <p>Qu’est-ce qui fait tourner la turbine de l’usine électrique du barrage de La Raviège&nbsp;?</p>
+          <div>
+            <span><span class="margin">L’électricité qui arrive très vite par des câbles électriques</span></span>
+            <span><span class="margin green">L’eau du lac qui arrive très fort par des tuyaux</span></span>
+            <span><span class="margin">De l’air qui arrive très compressée par de petits tubes</span></span>
+          </div>
+        </div>
+
+        <div class="resultDetail" ng-if="dataEtape.etapeEnfant[indexEtape].resultDetail!=null && dataEtape.etapeEnfant[indexEtape].resultDetail!=undefined">
+
+          <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].resultDetail | unsafe">
+          </p>
+        </div>
+      </div>
+
+
+      <div class="itemQuestionResult" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='multiple'">
+        <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+          <p  ng-bind-html="dataEtape.etapeEnfant[indexEtape].questions"></p>
+          <div>
+                <span ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses">
+                    <!-- pour faire apparaître les réponses de l'utilisateur cochées et colorées en fonction des bonnes ou mauvaises -->
+                  <!--span class="margin" ng-class="{
+                              green:dataEtape.etapeEnfant[indexEtape].bonnesReponses[$index],
+                              red:!dataEtape.etapeEnfant[indexEtape].bonnesReponses[$index] && reponseQuiz[$index]}">
+                              <i class="fa" ng-class="{'fa-check':reponseQuiz[$index]}" aria-hidden="true"></i>
+                                  {{itemR}}&nbsp;&nbsp;
+                  </span-->
+                       <span class="margin" ng-class="{
+                                green:dataEtape.etapeEnfant[indexEtape].bonnesReponses[$index]}">
+                                {{itemR}}
+                    </span>
+               </span>
+          </div>
+
+        <div class="resultDetail" ng-if="dataEtape.etapeEnfant[indexEtape].resultDetail!=null && dataEtape.etapeEnfant[indexEtape].resultDetail!=undefined">
+          <!-- filtre unsafe (défini dans app.js qui permet d'exécuter le javascript contenu dans le html-->
+          <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].resultDetail | unsafe">
+          </p>
+        </div>
+      </div>
+
+
+      <div class="itemQuestionResult" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='paysage'">
+        <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+        <div>
+          <div>
+            <img class="imgCenter" ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[2]}}"/>
+            <p  ng-bind-html="dataEtape.etapeEnfant[indexEtape].questionQuizPaysage[0]"></p>
+            <div>
+                <span ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses[0]">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etapeEnfant[indexEtape].indexBonneReponse[0]}">
+                                {{itemR}}
+                    </span>
+               </span>
+            </div>
+          </div>
+
+          <div>
+            <img class="imgCenter" ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[3]}}"/>
+            <p  ng-bind-html="dataEtape.etapeEnfant[indexEtape].questionQuizPaysage[1]"></p>
+            <div>
+                <span ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses[1]">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etapeEnfant[indexEtape].indexBonneReponse[1]}">
+                                {{itemR}}
+                    </span>
+               </span>
+            </div>
+          </div>
+
+          <div>
+            <img class="imgCenter" ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[4]}}"/>
+            <p  ng-bind-html="dataEtape.etapeEnfant[indexEtape].questionQuizPaysage[2]"></p>
+            <div>
+                <span ng-repeat="itemR in dataEtape.etapeEnfant[indexEtape].reponses[2]">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etapeEnfant[indexEtape].indexBonneReponse[2]}">
+                                {{itemR}}
+                    </span>
+               </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="resultDetail" ng-if="dataEtape.etapeEnfant[indexEtape].resultDetail!=null && dataEtape.etapeEnfant[indexEtape].resultDetail!=undefined">
+          <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].resultDetail | unsafe"></p>
+        </div>
+
+      </div>
+
+      <div class="itemQuestionResult" ng-if="dataEtape.etapeEnfant[indexEtape].game">
+        <!--p class="resultMessage" ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective==11 && win11Message[0]!=undefined">{{win11Message[0]}}</p>
+        <p class="resultMessage" ng-if="dataEtape.etapeEnfant[indexEtape].gameDirective!=11" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p-->
+        <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+
+        <div>
+          <p  ng-bind-html="dataEtape.etapeEnfant[indexEtape].questions"></p>
+        </div>
+
+        <div class="resultDetail" ng-if="dataEtape.etapeEnfant[indexEtape].resultDetail!=null && dataEtape.etapeEnfant[indexEtape].resultDetail!=undefined">
+          <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].resultDetail | unsafe"></p>
+        </div>
+      </div>
+
+
+      <div class="itemQuestionResult" ng-if="dataEtape.etapeEnfant[indexEtape].quizType=='quizSonore'">
+        <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+        <div class="resultDetail" ng-if="dataEtape.etapeEnfant[indexEtape].resultDetail!=null && dataEtape.etapeEnfant[indexEtape].resultDetail!=undefined">
+          <p ng-bind-html="dataEtape.etapeEnfant[indexEtape].resultDetail | unsafe"></p>
+            <div class="audio" ng-show="dataEtape.etapeEnfant[indexEtape].audio[1]!=null">
+              <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etapeEnfant[indexEtape].audio[1])"></button>
+              <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+            </div>
+          </div>
+      </div>
+
+    </div>
+    </div>
+  </ion-scroll>
+
+
+  <!-- ************************ THE BAR FOOTER **************************** -->
+
+  <div class="bar bar-footer">
+    <div class="button-bar">
+      <button class="button icon icon-checkmark-circle button-positive btn-green" on-touch="validReponseE()" ng-show="showQuizE[indexEtape] && showValidButton"></button>
+      <button class="button icon icon-audio-book button-positive" on-touch="openModal(1)" ng-if="dataEtape.etapeEnfant[indexEtape].information!=undefined"></button>
+      <button class="button icon ion-chevron-left button-positive" ng-if="showBackSteepButton" on-touch="onSwipeRight()"></button>
+      <button class="button icon ion-chevron-up button-positive" on-touch="resetZoom('mainScroll')"></button>
+      <button class="button icon ion-chevron-right button-positive" ng-if="showNextSteepButton" on-touch="onSwipeLeft()" ></button>
+    </div>
+  </div>
+</ion-view>
+
+
+<!-- ************************ THE MODAL FOR MORE INFOS **************************** -->
+
+<script id="modalChild.html" type="text/ng-template">
+  <ion-modal-view id="modalChildView">
+    <ion-header-bar class="bar-positive">
+      <button class="button button-icon icon ion-arrow-left-c" on-touch="closeModal(1)"></button>
+      <h1 class="title">{{dataEtape.etapeEnfant[indexEtape].titre}}</h1>
+    </ion-header-bar>
+    <!-- Pour les devices de moins que 680px de large-->
+    <ion-scroll ng-if="!contentWidth680" zooming="true" delegate-handle="modalScroll" direction="xy" min-zoom="1" style="height: {{contentHeight-44}}px" class="has-header" on-swipe-right="onSwipeRightModal()" on-swipe-left="onSwipeLeftModal()">
+      <div class="theme0Modal" style="min-height: {{contentHeight}}px">
+        <div class="audio" ng-show="dataEtape.etapeEnfant[indexEtape].audio[0]!=null">
+          <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etapeEnfant[indexEtape].audio[0])"></button>
+          <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+        </div>
+        <img ng-if="dataEtape.etapeEnfant[indexEtape].image[0]!=null && dataEtape.etapeEnfant[indexEtape].image[0]!=undefined" ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[0]}}">
+        </img>
+        <!-- filtre unsafe (défini dans app.js qui permet d'exécuter le javascript contenu dans le html-->
+        <p class="complement" ng-bind-html="dataEtape.etapeEnfant[indexEtape].information | unsafe">
+        </p>
+      </div>
+    </ion-scroll>
+    <!-- la même mais pour les devices de 680px et + de large-->
+    <ion-scroll ng-if="contentWidth680" zooming="true" delegate-handle="modalScroll" direction="xy" min-zoom="1" style="height: {{contentHeight*0.6-44}}px" class="has-header" on-swipe-right="onSwipeRightModal()" on-swipe-left="onSwipeLeftModal()">
+      <div class="theme0Modal" style="min-height: {{contentHeight*0.6}}px">
+        <div class="audio" ng-show="dataEtape.etapeEnfant[indexEtape].audio[0]!=null">
+          <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etapeEnfant[indexEtape].audio[0])"></button>
+          <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+        </div>
+        <img ng-if="dataEtape.etapeEnfant[indexEtape].image[0]!=null && dataEtape.etapeEnfant[indexEtape].image[0]!=undefined" ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[0]}}">
+        </img>
+        <!-- filtre unsafe (défini dans app.js qui permet d'exécuter le javascript contenu dans le html-->
+        <p class="complement" ng-bind-html="dataEtape.etapeEnfant[indexEtape].information | unsafe">
+        </p>
+      </div>
+    </ion-scroll>
+  </ion-modal-view>
+</script>

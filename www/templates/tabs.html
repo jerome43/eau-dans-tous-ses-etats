@@ -1,0 +1,24 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+
+  <!-- parcours adulte Tab -->
+  <ion-tab ng-if="type_parcours == 'M' || type_parcours == 'A'" title="{{score_adulte}} pts" class="" icon-off="iontabpersooff icon-man" icon-on="iontabpersoon icon-man" href="#/tabs/etapeadulte" on-select="">
+    <ion-nav-view name="tabs-etapeadulte"></ion-nav-view>
+  </ion-tab>
+
+  <!-- parcours enfant Tab -->
+  <ion-tab ng-if="type_parcours == 'M' || type_parcours == 'E'" title="{{score_enfant}} pts" class="" icon-off="iontabpersooff icon-baby2" icon-on="iontabpersoon icon-baby2" href="#/tabs/etapeenfant" on-select="">
+    <ion-nav-view name="tabs-etapeenfant"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Geolocation Tab -->
+  <ion-tab title="itinéraire" icon-off="iontabpersooff icon-road-sign" class="" icon-on="iontabpersoon icon-road-sign" href="#/tabs/geoloc" on-select="">
+    <ion-nav-view name="tabs-geoloc"></ion-nav-view>
+  </ion-tab>
+
+
+</ion-tabs>

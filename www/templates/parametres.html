@@ -1,0 +1,61 @@
+<ion-view view-title="Paramètres">
+  <ion-content class="padding">
+    <article class="padding-bottom-perso">
+      <br/>
+      <h2>Réinitialisation</h2>
+      <br/>
+      <p>
+        Vous pouvez recommencer le circuit en choisissant un autre type de parcours (adulte, enfant, mixte).
+        <br/>
+        Les quizs et jeux seront réinitialisés et les scores remis à zéro.
+        <br/>
+        Le fond de carte sera aussi supprimé (vous pourrez le télécharger à nouveau ensuite).
+      </p>
+      <button class="button button-block button-positive" on-touch="openModal()">RéInitialiser</button>
+      <br/>
+      <hr/>
+      <h2 class="padding-top">Recharger la carte</h2>
+      <br/>
+      <p>
+        Charger la cartographie embarquée pour un usage hors connexion (5 MO environ).
+        <br/>
+      </p>
+      <!--button class="button button-block icon icon-checkmark-circle button-positive" on-touch="cachingMap()">Charger la cartographie</button-->
+      <button class="button button-block button-positive" on-touch="cachingMap()">Charger la cartographie</button>
+    </article>
+  </ion-content>
+</ion-view>
+
+<script id="selectTypeParcours.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">REINITIALISATION</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <h3 class="title">Modification du type de parcours</h3>
+      <article>
+        <p style="font-weight: bold">
+          Veuillez sélectionez le nouveau profil des joueurs.
+        </p>
+        <p>
+          Nous vous proposons trois types de profils : enfants seuls, adultes seuls et familles (adultes et enfants).
+        </p>
+        <p>
+          Pour chacun de ces profils, le parcours est identique. Seules les questions posées sont différentes.
+        </p>
+      </article>
+      <ion-list>
+        <ion-radio ng-model="$root.type_parcours_temp" on-touch="clickIonRadio()" ng-value="'E'"><i class="icon icon-baby2"></i>&nbsp;&nbsp;Enfants (8-14 ans)</ion-radio>
+        <ion-radio ng-model="$root.type_parcours_temp" on-touch="clickIonRadio()" ng-value="'A'"><i class="icon icon-man"></i>&nbsp;&nbsp;Adultes</ion-radio>
+        <ion-radio ng-model="$root.type_parcours_temp" on-touch="clickIonRadio()" ng-value="'M'"><i class="icon icon-baby2"></i>&nbsp;&nbsp;<i class="icon icon-man"></i>&nbsp;&nbsp;Famille</ion-radio>
+      </ion-list>
+    </ion-content>
+    <div class="bar bar-footer">
+      <div class="button-bar">
+        <!--button ng-if="$root.type_parcours_temp == 'M' || $root.type_parcours_temp == 'A'" ui-sref="tabs.etapeadulte" class="button icon-left ion-map button-positive" on-touch="resetAndUpdateTypeParcours()">commencer le parcours</button>
+        <button ng-if="$root.type_parcours_temp == 'E'" ui-sref="tabs.etapeenfant" class="button icon-left ion-map button-positive" on-touch="resetAndUpdateTypeParcours()">commencer le parcours</button-->
+        <button class="button icon icon-checkmark-circle button-positive" ng-show="showValidButton" on-touch="resetAndUpdateTypeParcours()"></button>
+      </div>
+    </div>
+  </ion-modal-view>
+</script>

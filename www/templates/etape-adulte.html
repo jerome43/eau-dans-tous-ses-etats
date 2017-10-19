@@ -1,0 +1,305 @@
+<ion-view view-title="<span class='title-little'>étape&nbsp;{{indexEtape}}/{{dataEtape.etape.length-1}}:</span>&nbsp;{{dataEtape.etape[indexEtape].titre}}">
+    <ion-scroll zooming="true" delegate-handle="mainScroll" direction="xy" min-zoom="1" style="height: {{contentHeight-93}}px" class="has-tabs-top" on-swipe-right="onSwipeRight()" on-swipe-left="onSwipeLeft()">
+      <!--button on-touch="openModalFinish()">Open Modal Finsih</button-->
+      <div class="theme0" ng-class="{paddingTopIos:isIos}" style="min-height: {{contentHeight}}px">
+
+
+        <!-- ************************ QUESTIONS QUIZ **************************** -->
+
+        <div ng-if="showQuizP[indexEtape]">
+          <!-- ************************ INTRODUCTION **************************** -->
+          <div>
+            <p class="intro" ng-bind-html="dataEtape.etape[indexEtape].introduction"></p>
+          </div>
+
+          <div class="questions">
+            <p class="itemQuestions" ng-bind-html="dataEtape.etape[indexEtape].questions">
+            </p>
+            <p class="itemInstruction" ng-bind-html="dataEtape.etape[indexEtape].instruction | unsafe">
+            </p>
+          </div>
+          <!--div class="indexEtape"><span style="font-size: 1.5em;">{{indexEtape}} </span> / {{dataEtape.etape.length-1}}</div-->
+
+          <div ng-if="!dataEtape.etape[indexEtape].game">
+
+            <div class="reponse" ng-if="dataEtape.etape[indexEtape].quizType=='simple' || dataEtape.etape[indexEtape].quizType=='simple10'">
+              <div ng-repeat="itemR in dataEtape.etape[indexEtape].reponses">
+                <button  class="btn-quiz" on-touch="saveReponse($index)" ng-class="{white:$index ==reponseQuiz[0]}">
+              <span>
+                <i class="fa" ng-class="{'fa-check':$index ==reponseQuiz[0]}" aria-hidden="true"></i>
+                            {{itemR}}
+              </span>
+                </button>
+              </div>
+            </div>
+
+            <div class="reponse" ng-if="dataEtape.etape[indexEtape].quizType=='quizSonore'">
+              <div class="audio" ng-show="dataEtape.etape[indexEtape].audio[1]!=null">
+                <h3>Qui émet ce chant ?</h3>
+                <p>Appuyez pour écouter le chant.</p>
+                <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etape[indexEtape].audio[1])"></button>
+                <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+              </div>
+              <div ng-repeat="itemR in dataEtape.etape[indexEtape].reponses">
+                <button  class="btn-quiz" on-touch="saveReponse($index)" ng-class="{white:$index ==reponseQuiz[0]}">
+              <span>
+                <i class="fa" ng-class="{'fa-check':$index ==reponseQuiz[0]}" aria-hidden="true"></i>
+                            {{itemR}}
+              </span>
+                </button>
+              </div>
+            </div>
+
+            <form class="reponse" ng-if="dataEtape.etape[indexEtape].quizType=='multiple'" >
+              <div ng-repeat="itemR in dataEtape.etape[indexEtape].reponses">
+                <label class="btn-quiz" ng-class="{white: reponseQuiz[$index]}">
+                  <div class="btn-quiz2">
+                    <input type="checkbox" ng-model="reponseQuiz[$index]" ng-change="saveReponse()">
+                    <i class="fa" ng-class="{'fa-check':reponseQuiz[$index]}" aria-hidden="true"></i>
+                    {{itemR}}
+                  </div>
+                </label>
+              </div>
+            </form>
+
+            <div class="reponse" ng-if="dataEtape.etape[indexEtape].quizType=='paysage'">
+              <!--div get-width class="reponse" ng-if="dataEtape.etape[indexEtape].quizType=='paysage'"-->
+              <div>
+                <img ng-src="img/{{dataEtape.etapeEnfant[indexEtape].image[1]}}" style="display:block; margin:0 auto; width:95%"/>
+                <img ng-src="img/icon/1X/focus.png" alt="touchez-moi pour affcher la question" ng-show="quizMarkerPaysage[0][0]" on-touch="clickPaysageP(0)" style="position:relative ; display:block; top:calc(-350px/{{ratio}}); left : calc(620px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+                <img ng-src="img/icon/1X/focus_blank.png" alt="" ng-show="!quizMarkerPaysage[0][0]" style="position:relative ; display:block; top:calc(-350px/{{ratio}}); left : calc(620px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+                <img ng-src="img/icon/1X/focus.png" alt="touchez-moi pour affcher la question" ng-show="quizMarkerPaysage[0][1]" on-touch="clickPaysageP(1)" style="position:relative ; display:block; top:calc(-250px/{{ratio}}); left : calc(70px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+                <img ng-src="img/icon/1X/focus_blank.png" alt="" ng-show="!quizMarkerPaysage[0][1]" style="position:relative ; display:block; top:calc(-250px/{{ratio}}); left : calc(70px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+                <img ng-src="img/icon/1X/focus.png" alt="touchez-moi pour affcher la question" ng-show="quizMarkerPaysage[0][2]" on-touch="clickPaysageP(2)" style="position:relative ; display:block; top:calc(-170px/{{ratio}}); left : calc(50px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+                <img ng-src="img/icon/1X/focus_blank.png" alt="" ng-show="!quizMarkerPaysage[0][2]" style="position:relative ; display:block; top:calc(-170px/{{ratio}}); left : calc(50px/{{ratio}}); width:-webkit-calc(64px/{{ratio}}); width:calc(64px/{{ratio}})"/>
+              </div>
+            </div>
+
+          </div>
+
+
+          <!-- ************************ QUESTIONS GAME **************************** -->
+
+          <div class="game" ng-if="dataEtape.etape[indexEtape].game">
+            <game3 ng-if="dataEtape.etape[indexEtape].gameDirective==3" id="game3"></game3>
+            <game5 ng-if="dataEtape.etape[indexEtape].gameDirective==5" id="game5"></game5>
+            <game6 ng-if="dataEtape.etape[indexEtape].gameDirective==6" id="game6"></game6>
+            <game7 ng-if="dataEtape.etape[indexEtape].gameDirective==7" id="game7"></game7>
+            <game8 ng-if="dataEtape.etape[indexEtape].gameDirective==8" id="game8"></game8>
+            <game11 ng-if="dataEtape.etape[indexEtape].gameDirective==11" id="game11"></game11>
+          </div>
+
+          <div class="" ng-if="dataEtape.etape[indexEtape].media!=undefined && dataEtape.etape[indexEtape].media!=null">
+            <p ng-bind-html="dataEtape.etape[indexEtape].media"></p>
+          </div>
+
+        </div>
+
+
+        <!-- ************************ THE RESULT **************************** -->
+
+        <div ng-if="!showQuizP[indexEtape]">
+          <div class="itemQuestionResult" ng-if="dataEtape.etape[indexEtape].quizType=='simple'">
+            <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+            <div>
+              <p  ng-bind-html="dataEtape.etape[indexEtape].questions"></p>
+              <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses">
+                    <!-- pour faire apparaître les réponses de l'utilisateur cochées et colorées en fonction des bonnes ou mauvaises -->
+                  <!--span class="margin" ng-class="{
+                              green:$index == dataEtape.etape[indexEtape].indexBonneReponse,
+                              red:$index != dataEtape.etape[indexEtape].indexBonneReponse && $index == reponseQuiz[0]}">
+                              <i class="fa" ng-class="{'fa-check':$index == reponseQuiz[0]}" aria-hidden="true"></i>
+                                  {{itemR}}
+                  </span-->
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etape[indexEtape].indexBonneReponse}">
+                                {{itemR}}
+                    </span>
+               </span>
+              </div>
+            </div>
+
+            <div class="resultDetail" ng-if="dataEtape.etape[indexEtape].resultDetail!=null && dataEtape.etape[indexEtape].resultDetail!=undefined">
+              <p ng-bind-html="dataEtape.etape[indexEtape].resultDetail | unsafe"></p>
+            </div>
+          </div>
+
+          <div class="itemQuestionResult" ng-if="dataEtape.etape[indexEtape].quizType=='simple10'">
+            <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+            <div>
+              <p>Le barrage du Lac de La Raviège a pour rôle principal de stocker l’eau pour la production d’électricité. Mais savez-vous qu’il a également un autre rôle. Lequel&nbsp;?</p>
+              <div>
+                <span><span class="margin">L’irrigation pour l’agriculture</span></span>
+                <span><span class="margin green">Les loisirs nautiques (navigation, baignade)</span></span>
+                <span><span class="margin">Stocker de l’eau potable</span></span>
+                <span><span class="margin">Pisciculture</span></span>
+              </div>
+            </div>
+            <div>
+              <p>Quel appareil permet que le transport de l’électricité dans les lignes à hautes tensions soit possible&nbsp;?</p>
+              <div>
+                <span><span class="margin">La turbine</span></span>
+                <span><span class="margin">L’alternateur</span></span>
+                <span><span class="margin green">Le transformateur</span></span>
+              </div>
+            </div>
+
+            <div class="resultDetail" ng-if="dataEtape.etape[indexEtape].resultDetail!=null && dataEtape.etape[indexEtape].resultDetail!=undefined">
+              <p ng-bind-html="dataEtape.etape[indexEtape].resultDetail | unsafe"></p>
+            </div>
+          </div>
+
+          <div class="itemQuestionResult" ng-if="dataEtape.etape[indexEtape].quizType=='multiple'">
+            <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+            <p  ng-bind-html="dataEtape.etape[indexEtape].questions"></p>
+            <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses">
+                    <!-- pour faire apparaître les réponses de l'utilisateur cochées et colorées en fonction des bonnes ou mauvaises -->
+                  <!--span class="margin" ng-class="{
+                              green:dataEtape.etape[indexEtape].bonnesReponses[$index],
+                              red:!dataEtape.etape[indexEtape].bonnesReponses[$index] && reponseQuiz[$index]}">
+                              <i class="fa" ng-class="{'fa-check':reponseQuiz[$index]}" aria-hidden="true"></i>
+                                  {{itemR}}&nbsp;&nbsp;
+                  </span-->
+                       <span class="margin" ng-class="{
+                                green:dataEtape.etape[indexEtape].bonnesReponses[$index]}">
+                                {{itemR}}
+                    </span>
+               </span>
+            </div>
+
+            <div class="resultDetail" ng-if="dataEtape.etape[indexEtape].resultDetail!=null && dataEtape.etape[indexEtape].resultDetail!=undefined">
+              <!-- filtre unsafe (défini dans app.js qui permet d'exécuter le javascript contenu dans le html-->
+              <p ng-bind-html="dataEtape.etape[indexEtape].resultDetail | unsafe">
+              </p>
+            </div>
+          </div>
+
+          <div class="itemQuestionResult" ng-if="dataEtape.etape[indexEtape].quizType=='paysage'">
+            <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+            <div>
+              <div>
+                <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[2]}}"/>
+                <p  ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[0]"></p>
+                <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[0] track by $index">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etape[indexEtape].indexBonneReponse[0]}">
+                                {{itemR}}
+                    </span>
+               </span>
+                </div>
+              </div>
+
+              <div>
+                <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[3]}}"/>
+                <p  ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[1]"></p>
+                <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[1] track by $index">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etape[indexEtape].indexBonneReponse[1]}">
+                                {{itemR}}
+                    </span>
+               </span>
+                </div>
+              </div>
+
+              <div>
+                <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[4]}}"/>
+                <p  ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[2]"></p>
+                <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[2] track by $index">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etape[indexEtape].indexBonneReponse[2]}">
+                                {{itemR}}
+                    </span>
+               </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="resultDetail" ng-if="dataEtape.etape[indexEtape].resultDetail!=null && dataEtape.etape[indexEtape].resultDetail!=undefined">
+              <p ng-bind-html="dataEtape.etape[indexEtape].resultDetail | unsafe"></p>
+            </div>
+
+          </div>
+
+          <div class="itemQuestionResult" ng-if="dataEtape.etape[indexEtape].game">
+            <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+            <div>
+              <p  ng-bind-html="dataEtape.etape[indexEtape].questions"></p>
+            </div>
+
+            <div class="resultDetail" ng-if="dataEtape.etape[indexEtape].resultDetail!=null && dataEtape.etape[indexEtape].resultDetail!=undefined">
+              <p ng-bind-html="dataEtape.etape[indexEtape].resultDetail | unsafe"></p>
+            </div>
+          </div>
+
+          <div class="itemQuestionResult" ng-if="dataEtape.etape[indexEtape].quizType=='quizSonore'">
+            <p class="resultMessage" ng-class="{resultGoodMessage:win[indexEtape]}">{{winMessage[indexEtape]}}</p>
+            <div class="resultDetail" ng-if="dataEtape.etape[indexEtape].resultDetail!=null && dataEtape.etape[indexEtape].resultDetail!=undefined">
+              <p ng-bind-html="dataEtape.etape[indexEtape].resultDetail | unsafe"></p>
+              <div class="audio" ng-show="dataEtape.etape[indexEtape].audio[1]!=null">
+                <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etape[indexEtape].audio[1])"></button>
+                <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-scroll>
+
+  <!-- ************************ THE BAR FOOTER **************************** -->
+
+  <div class="bar bar-footer">
+    <div class="button-bar">
+      <button class="button icon icon-checkmark-circle button-positive btn-green" on-touch="validReponseP()" ng-show="showQuizP[indexEtape] && showValidButton"></button>
+      <button class="button icon icon-audio-book button-positive" on-touch="openModal(2)" ng-if="dataEtape.etape[indexEtape].information!=undefined"></button>
+      <button class="button icon ion-chevron-left button-positive" ng-if="showBackSteepButton" on-touch="onSwipeRight()"></button>
+      <button class="button icon ion-chevron-up button-positive" on-touch="resetZoom('mainScroll')"></button>
+      <button class="button icon ion-chevron-right button-positive" ng-if="showNextSteepButton" on-touch="onSwipeLeft()" ></button>
+    </div>
+  </div>
+</ion-view>
+
+
+<!-- ************************ THE MODAL FOR MORE INFOS **************************** -->
+
+<script id="modalAdult.html" type="text/ng-template">
+  <ion-modal-view id="modalAdultView">
+    <ion-header-bar class="bar-positive">
+      <button class="button button-icon icon ion-arrow-left-c" on-touch="closeModal(2)"></button>
+      <h1 class="title">{{dataEtape.etape[indexEtape].titre}}</h1>
+    </ion-header-bar>
+    <!--ion-content class="" id ="ion-content-etape-adulte" on-swipe-right="onSwipeRightModal()" on-swipe-left="onSwipeLeftModal()"-->
+    <!-- Pour les devices de moins que 680px de large-->
+    <ion-scroll ng-if="!contentWidth680" zooming="true" delegate-handle="modalScroll" direction="xy" min-zoom="1" style="height: {{contentHeight-44}}px" class="has-header" id="ion-content-etape-adulte" on-swipe-right="onSwipeRightModal()" on-swipe-left="onSwipeLeftModal()">
+        <div class="theme0Modal" style="min-height: {{contentHeight}}px">
+          <div class="audio" ng-show="dataEtape.etape[indexEtape].audio[0]!=null">
+            <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etape[indexEtape].audio[0])"></button>
+            <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+          </div>
+          <img ng-if="dataEtape.etape[indexEtape].image[0]!=null && dataEtape.etape[indexEtape].image[0]!=undefined" ng-src="img/{{dataEtape.etape[indexEtape].image[0]}}"/>
+          <!-- filtre unsafe (défini dans app.js qui permet d'exécuter le javascript contenu dans le html-->
+          <p class="complement" ng-bind-html="dataEtape.etape[indexEtape].information | unsafe">
+          </p>
+        </div>
+      </ion-scroll>
+    <!-- la même mais pour les devices de 680px et + de large-->
+    <ion-scroll ng-if="contentWidth680" zooming="true" delegate-handle="modalScroll" direction="xy" min-zoom="1" style="height: {{contentHeight*0.6-44}}px" class="has-header" id="ion-content-etape-adulte" on-swipe-right="onSwipeRightModal()" on-swipe-left="onSwipeLeftModal()">
+      <div class="theme0Modal" style="min-height: {{contentHeight*0.6}}px">
+        <div class="audio" ng-show="dataEtape.etape[indexEtape].audio[0]!=null">
+          <button class="button  icon btn-audio icon-hearing" ng-show="showAudio" on-touch="activeAudio(dataEtape.etape[indexEtape].audio[0])"></button>
+          <button class="button  icon btn-audio icon-mute" ng-show="!showAudio"  on-touch="stopAudio()"></button>
+        </div>
+        <img ng-if="dataEtape.etape[indexEtape].image[0]!=null && dataEtape.etape[indexEtape].image[0]!=undefined" ng-src="img/{{dataEtape.etape[indexEtape].image[0]}}"/>
+        <!-- filtre unsafe (défini dans app.js qui permet d'exécuter le javascript contenu dans le html-->
+        <p class="complement" ng-bind-html="dataEtape.etape[indexEtape].information | unsafe">
+        </p>
+      </div>
+    </ion-scroll>
+  </ion-modal-view>
+</script>

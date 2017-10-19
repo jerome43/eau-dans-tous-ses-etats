@@ -1,0 +1,123 @@
+<ion-view id="viewAccueil" view-title="Accueil">
+  <ion-content class="has-header padding">
+    <article class="texteAccueil">
+      <p class="text-center">
+        <img ng-src="img/logo-600px.png" class="imgAccueil"/></p>
+      <p>
+      <p class="">Cette application vous propose un itinéraire entre le village de La Salvetat-sur-Agoût et la base de loisirs des Bouldouïres, au fil de l’Agoût et au bord du lac de La Raviège.
+        <br/>
+        Cet itinéraire de 4,2km vous occupera 2 à 3h00 si vous prenez le temps de jouer et d’observer.
+        <br/>
+        Il vous permet une découverte interactive du patrimoine salvetois, du rôle et de l’utilisation de l’eau sur la commune et de la biodiversité aquatique.
+        <br/>
+        Cette découverte est basée sur un jeu, à faire en famille, pour découvrir, observer, apprendre en s’amusant.
+      </p>
+      <div class="regle">
+        <p>
+          Trois types de profils sont proposés pour jouer :
+        <ul>
+          <li><i class="icon icon-man">&nbsp;</i>entre adultes,</li>
+          <li><i class="icon icon-baby2">&nbsp;</i>entre enfants,</li>
+          <li><i class="icon icon-baby2">&nbsp;</i><i class="icon icon-man">&nbsp;</i>en familles (adultes et enfants)</li>
+        </ul>
+        </p>
+        <p>
+          Pour chacun de ces profils, le parcours est identique. Seules les questions posées sont différentes.
+        </p>
+      </div>
+      <p>
+        Vous pourrez également aller plus loin en découvrant des idées, des conseils, des exemples pour mieux gérer et préserver la ressource en eau.
+      </p>
+      </article>
+    <article>
+      <p>
+        Le village que vous allez explorer est habité. Respectez ses habitants et leur cadre de vie !
+      </p>
+      <p>
+        Avant de partir pensez à vérifier que la batterie de votre smartphone est suffisamment chargée.
+      </p>
+      <p>
+        Durant votre trajet, n’oubliez pas de respecter le code de la route et soyez attentif à votre environnement, respectez les lieux et jetez vos déchets dans les poubelles.
+      </p>
+      </article>
+      <hr/>
+    <article>
+      <h3 class="text-center padding">Réalisation</h3>
+      <p class="text-center">
+        <img ng-src="img/logo/logoCPIEHL300px.jpg" class="imgAccueil"/></p>
+      <p class="text-center">
+        Cette application a été imaginée par le Centre Permanent d’Initiatives pour l’Environnement du Haut-Languedoc.</p>
+      <p class="text-center">
+        <a href='#' onclick="cordova.InAppBrowser.open('http://www.cpiehl.org', '_blank', 'closebuttoncaption=fermer')">cpiehl.fr</a>
+      </p>
+      <br/>
+      <p class="text-center">Le développement logiciel a été confié à l'Agence InSensa.</p>
+      <p class="text-center">
+        <a href='#' onclick="cordova.InAppBrowser.open('http://www.insensa.fr', '_blank', 'closebuttoncaption=fermer')" title="InSensa, développement web et mobile"><img ng-src="img/logo/insensa.png" style="width: 33%; max-width:300px" alt="logo INSENSA"/></a>
+      </p>
+    </article>
+    <hr/>
+    <article class="padding-bottom-perso">
+      <h3 class="text-center padding">Ce projet a été financé par</h3>
+      <p class="text-center"><img class="imgAccueil" ng-src="img/logo/EDF300px.png" alt="logo EDF"/></p>
+      <p class="text-center"><a href='#' onclick="cordova.InAppBrowser.open('https://www.edf.fr/groupe-edf/nos-energies/energies-renouvelables/hydraulique/hydraulique-tarn', '_blank', 'closebuttoncaption=fermer')">EDF</a></p>
+      <p class="text-center"><img class="imgAccueil" ng-src="img/logo/occitanie300px.jpg" alt="logo Région Occitanie"/></p>
+      <p class="text-center"><a href='#' onclick="cordova.InAppBrowser.open('http://www.laregion.fr', '_blank', 'closebuttoncaption=fermer')">La Région Occitanie</a></p>
+      <p class="text-center"><img class="imgAccueil" ng-src="img/logo/pepss300px.png" alt="logo PEPS'S"/></p>
+      <p class="text-center"><a href='#' onclick="cordova.InAppBrowser.open('http://www.lasalvetat.fr', '_blank', 'closebuttoncaption=fermer')">PEPS'S</a></p>
+      <p class="text-center"><img class="imgAccueil" ng-src="img/logo/laSalvetat300px.jpg" alt="logo La Salvetat sur Agoût"/></p>
+      <p class="text-center"><a href='#' onclick="cordova.InAppBrowser.open('http://lasalvetatsuragout.fr', '_blank', 'closebuttoncaption=fermer')">La commune de la Salvetat-sur-Agoût</a></p>
+    </article>
+
+  </ion-content>
+  <div class="bar bar-footer">
+    <div class="button-bar">
+      <button class="button icon-left icon-road-sign button-positive" on-touch="selectParcours()" ng-if="showSelectTypeParcours">Commencer le parcours.</button>
+      <!--button class="button icon-left icon-road-sign button-positive" ng-if="(!showSelectTypeParcours && type_parcours == 'M') || (!showSelectTypeParcours && type_parcours == 'A')" ui-sref="tabs.etapeadulte">Rejoindre le parcours</button>
+      <button-- class="button icon-left icon-road-sign button-positive" ng-if="!showSelectTypeParcours && type_parcours == 'E'" ui-sref="tabs.etapeenfant">Rejoindre le parcours</button-->
+      <button class="button icon-left icon-road-sign button-positive" ng-if="!showSelectTypeParcours" ui-sref="tabs.geoloc">Rejoindre le parcours</button>
+    </div>
+  </div>
+</ion-view>
+
+
+<script id="selectTypeParcours.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar class="bar-positive">
+      <h1 class="title">Accueil</h1>
+    </ion-header-bar>
+    <ion-content class="padding">
+      <h3 class="title">Choix du type de parcours</h3>
+      <article>
+        <p style="font-weight: bold">
+          Avant de commencer votre parcours, veuillez sélectionez le profil des joueurs.
+        </p>
+        <p>
+          Nous vous proposons trois types de profils : enfants seuls, adultes seuls et familles (adultes et enfants).
+        </p>
+        <p>
+          Pour chacun de ces profils, le parcours est identique. Seules les questions posées sont différentes.
+        </p>
+
+        <p style="font-style: italic">
+          NB : Vous pourrez modifier ce choix plus tard.
+        </p>
+      </article>
+
+      <ion-list>
+        <ion-radio ng-model="$root.type_parcours" ng-value="'E'" on-touch="updateTypeParcours()"><i class="icon icon-baby2"></i>&nbsp;&nbsp;Enfants (8-14 ans)</ion-radio>
+        <ion-radio ng-model="$root.type_parcours" ng-value="'A'" on-touch="updateTypeParcours()"><i class="icon icon-man"></i>&nbsp;&nbsp;Adultes</ion-radio>
+        <ion-radio ng-model="$root.type_parcours" ng-value="'M'" on-touch="updateTypeParcours()"><i class="icon icon-baby2"></i>&nbsp;&nbsp;<i class="icon icon-man"></i>&nbsp;&nbsp;Famille</ion-radio>
+        <br/>
+        <br/>
+      </ion-list>
+    </ion-content>
+    <div class="bar bar-footer">
+      <div class="button-bar">
+        <!--button ng-if="type_parcours == 'M' || type_parcours == 'A'" ui-sref="tabs.etapeadulte" class="button icon-left icon-checkmark-circle button-positive" on-touch="closeModal()"></button>
+        <button ng-if="type_parcours == 'E'" ui-sref="tabs.etapeenfant" class="button icon-left icon-checkmark-circle button-positive" on-touch="closeModal()"></button-->
+        <button class="button icon icon-checkmark-circle button-positive" ui-sref="tabs.geoloc" ng-show="showValidButton" on-touch="closeModal()"></button>
+      </div>
+    </div>
+  </ion-modal-view>
+</script>

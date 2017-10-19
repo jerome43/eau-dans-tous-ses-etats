@@ -1,0 +1,37 @@
+<ion-view view-title="Itinéraire">
+  <ion-content scroll="false" id="mapContainer">
+        <!--leaflet id="map" lf-center="center" defaults="defaults" markers="markers" event-broadcast="events"-->
+          <leaflet id="map" lf-center="center" defaults="defaults" markers="markers">
+      </leaflet>
+    <div class="buttonMapContainerRight">
+      <!--button class="icon icon-radar locateMeButton" on-touch="locateMe()" ng-show="enableLocateMe"></button>
+      <button class="icon icon-radar locateMeButtonBlue" on-touch="stopLocateMe()" ng-show="!enableLocateMe"></button-->
+      <ion-toggle ng-change="locateMeOrNot()" ng-model="enableLocateMe.value"  ng-true-value="'true'" ng-false-value="'false'" class="toggle-calm toggle-small toggle-perso">GPS</ion-toggle>
+    </div>
+    <div class="buttonMapContainerLeft">
+      <ion-toggle ng-change="goOnOrOffLine()" ng-model="mapConnected.value" class="toggle-calm toggle-small toggle-perso" ng-show="map_loaded=='true'">{{online}}</ion-toggle>
+    </div>
+      <!--div id="infoEtapeContainer" on-swipe-right="onSwipeRight()" on-swipe-left="onSwipeLeft()"-->
+      <div on-touch="clickGoToSteep()" id="infoEtapeContainer">
+        <div id="etapeContainer">
+            <i class="icon icon-arrow-right-circle iconPerso"></i>
+            <span id="infoEtapeContent" ng-bind="infoEtapeContent"></span>
+        </div>
+        <div  id="cacheInfoEtapeContainer"></div>
+        <!--div class="scoreContainer verticalMiddle">
+          <div ng-if="type_parcours=='A' || type_parcours=='M'" class="icon-baby2">&nbsp;&nbsp;{{score_enfant}}&nbsp;pts</div>
+          <div ng-if="type_parcours=='E'  || type_parcours=='M'" class="icon-man">&nbsp;&nbsp;{{score_adulte}}&nbsp;pts</div>
+        </div-->
+      </div>
+    <!-- pour debuggage-->
+    <!--div id="buttons">
+      <button on-touch="testCachingPyramid()">Cache current (pyramid)</button>
+      <button on-touch="testCachingBounds()">Cache current (bounds)</button>
+      <button on-touch="testOffline()">Switch to offline mode</button>
+      <button on-touch="testOnline()">Switch to online mode</button>
+      <button on-touch="testUsage()">Show cache usage</button>
+      <button on-touch="testBrowseCache()">Browse cache</button>
+      <button on-touch="testEmpty()">Clear cache</button>
+    </div-->
+  </ion-content>
+</ion-view>

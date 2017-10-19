@@ -1,0 +1,103 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" on-touch="closeModal(4)"></button>
+    <h1 class="title">{{dataEtape.etape[indexEtape].titre}}</h1>
+  </ion-header-bar>
+  <!-- Pour les devices de moins que 680px de large-->
+  <ion-scroll ng-if="!contentWidth680" zooming="true" delegate-handle="modalPaysageScroll" direction="xy" min-zoom="1" style="height: {{contentHeight-44}}px" class="has-header">
+    <div class="theme0Modal complement" style="min-height: {{contentHeight}}px">
+      <!---------    THE QUIZ ---------------->
+      <div ng-if="showModalPaysageQuestion">
+        <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[indexPaysage+2]}}"/>
+        <div class="questions">
+          <p class="itemQuestions" ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[indexPaysage]">
+          </p>
+          <p class="itemInstruction" ng-bind-html="dataEtape.etape[indexEtape].instructionQuestionPaysage">
+          </p>
+        </div>
+        <div class="reponse">
+          <div ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[indexPaysage] track by $index">
+            <button  class="btn-quiz" on-touch="saveReponse($index)" ng-class="{white:$index ==reponseQuiz[0]}">
+              <span>
+                <i class="fa" ng-class="{'fa-check':$index ==reponseQuiz[0]}" aria-hidden="true"></i>
+                            {{itemR}}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!---------- THE QUIZ RESULT ----------------->
+
+      <div class="itemQuestionResult" ng-if="!showModalPaysageQuestion">
+        <p class="resultMessage" ng-class="{resultGoodMessage:win1Message[indexPaysage]=='Bonne réponse !'}">{{win1Message[indexPaysage]}}</p>
+        <div>
+          <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[indexPaysage+2]}}"/>
+          <p  ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[indexPaysage]"></p>
+          <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[indexPaysage] track by $index">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etape[indexEtape].indexBonneReponse[indexPaysage]}">
+                                {{itemR}}
+                    </span>
+               </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-scroll>
+
+  <!-- la même mais pour les devices de 680px et + de large (seul contentHeight diffère-->
+
+  <ion-scroll ng-if="contentWidth680" zooming="true" delegate-handle="modalPaysageScroll" direction="xy" min-zoom="1" style="height: {{contentHeight*0.6-44}}px" class="has-header">
+    <div class="theme0Modal complement" style="min-height: {{contentHeight*0.6}}px">
+      <!---------    THE QUIZ ---------------->
+      <div ng-if="showModalPaysageQuestion">
+        <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[indexPaysage+2]}}"/>
+        <div class="questions">
+          <p class="itemQuestions" ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[indexPaysage]">
+          </p>
+          <p class="itemInstruction" ng-bind-html="dataEtape.etape[indexEtape].instructionQuestionPaysage">
+          </p>
+        </div>
+        <div class="reponse">
+          <div ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[indexPaysage] track by $index">
+            <button  class="btn-quiz" on-touch="saveReponse($index)" ng-class="{white:$index ==reponseQuiz[0]}">
+              <span>
+                <i class="fa" ng-class="{'fa-check':$index ==reponseQuiz[0]}" aria-hidden="true"></i>
+                            {{itemR}}
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!---------- THE QUIZ RESULT ----------------->
+
+      <div class="itemQuestionResult" ng-if="!showModalPaysageQuestion">
+        <p class="resultMessage" ng-class="{resultGoodMessage:win1Message[indexPaysage]=='Bonne réponse !'}">{{win1Message[indexPaysage]}}</p>
+        <div>
+          <img class="imgCenter" ng-src="img/{{dataEtape.etape[indexEtape].image[indexPaysage+2]}}"/>
+          <p  ng-bind-html="dataEtape.etape[indexEtape].questionQuizPaysage[indexPaysage]"></p>
+          <div>
+                <span ng-repeat="itemR in dataEtape.etape[indexEtape].reponses[indexPaysage] track by $index">
+                       <span class="margin" ng-class="{
+                                green:$index == dataEtape.etape[indexEtape].indexBonneReponse[indexPaysage]}">
+                                {{itemR}}
+                    </span>
+               </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-scroll>
+
+  <!-- ************************ THE BAR FOOTER **************************** -->
+
+  <div class="bar bar-footer">
+    <div class="button-bar">
+      <button class="button icon icon-checkmark-circle button-positive btn-green" on-touch="validReponseQuizPaysageP()" ng-show="showQuizP[indexEtape] && showValidButton"></button>
+    </div>
+  </div>
+
+</ion-modal-view>

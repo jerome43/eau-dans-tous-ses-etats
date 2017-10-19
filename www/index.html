@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <!-- protocoles de sécurité, voir cordova plugin whitelist -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *; img-src *; script-src 'self' 'unsafe-inline'">
+    <title>Découverte de la Salvetat</title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
+    <!-- custom linearicons font css -->
+    <link href="css/linearicons.css" rel="stylesheet">
+
+    <!-- leaflet for Map -->
+    <link href="css/library/leaflet.css" rel="stylesheet">
+
+    <!-- appli css -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- jQuery library, à charger avant angular pour être pris en compte-->
+    <!--script src="js/library/jquery-3.1.1.min.js"></script-->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- leaflet for Map - general script -->
+    <script type="text/javascript"
+            src="js/library/leaflet.js">
+    </script>
+
+    <!-- to pre download and cache map tilelayer for leaflet-->
+    <script type="text/javascript"
+            src="js/library/leaflet-tilelayer-cordova.js">
+    </script>
+
+    <!-- leafleft directive, to use it in angular-->
+    <script type="text/javascript"
+            src="js/library/angular-leaflet-directive.js">
+    </script>
+
+    <!-- phaser library, use for html5 game-->
+    <script src="js/library/phaser.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/controllers/parametresControllers.js"></script>
+    <script src="js/controllers/etapeControllers.js"></script>
+    <script src="js/controllers/geolocControllers.js"></script>
+    <script src="js/controllers/mainControllers.js"></script>
+    <script src="js/controllers/tabsControllers.js"></script>
+    <script src="js/services/httpServices.js"></script>
+    <script src="js/services/dataBaseService.js"></script>
+    <script src="js/directives/game3.js"></script>
+    <script src="js/directives/game3e.js"></script>
+    <script src="js/directives/game4e.js"></script>
+    <script src="js/directives/game5.js"></script>
+    <script src="js/directives/game5e.js"></script>
+    <script src="js/directives/game6.js"></script>
+    <script src="js/directives/game7.js"></script>
+    <script src="js/directives/game7e.js"></script>
+    <script src="js/directives/game8.js"></script>
+    <script src="js/directives/game8e.js"></script>
+    <script src="js/directives/game11.js"></script>
+    <script src="js/directives/game11e.js"></script>
+    <!--script src="js/directives/getWidth.js"></script>
+    <script src="js/directives/getWidthE.js"></script-->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-side-menus enable-menu-with-back-views="true">
+      <!-- Left menu -->
+      <ion-side-menu side="left">
+        <!--h2 class="title">menu</h2-->
+        <img src="img/logo-290px.png" class="logoMenu"/>
+        <!--a menu-close ui-sref="accueil" class="item itemMenu padding-top-75">Accueil</a-->
+        <a menu-close ui-sref="accueil" class="item itemMenu">Accueil</a>
+        <!--a menu-close ng-if="(!showSelectTypeParcours && type_parcours == 'M') || (!showSelectTypeParcours && type_parcours == 'A')" ui-sref="tabs.etapeadulte" class="item">parcours</a>
+        <a menu-close ng-if="!showSelectTypeParcours && type_parcours == 'E'" ui-sref="tabs.etapeenfant" class="item">parcours</a-->
+        <a menu-close ui-sref="tabs.geoloc" class="item itemMenu">Parcours</a>
+        <a menu-close ui-sref="parametres" class="item itemMenu">Paramètres</a>
+        <a menu-close ui-sref="partenaires" class="item itemMenu">Partenaires</a>
+        <a menu-close ui-sref="credits" class="item itemMenu">Crédits</a>
+      </ion-side-menu>
+      <!-- drag-content="false" empêche l'ouverture et fermeture du menu par swipe-->
+      <ion-side-menu-content drag-content="false">
+
+        <!--The nav bar that will be updated as we navigate between views.-->
+        <ion-nav-bar class="bar-positive">
+          <!--ion-nav-back-button>
+          </ion-nav-back-button-->
+          <ion-nav-buttons side="left">
+            <!--button menu-toggle="left" class="button button-icon icon ion-navicon"></button-->
+            <img src="img/logo-menu-3.png" width="35px" height="35px" menu-toggle="left"/>
+          </ion-nav-buttons>
+        </ion-nav-bar>
+
+        <!--la vue container des vues filles "ion-view" chargées dans chaque template
+        et appelées en fonction de la navigation-->
+        <ion-nav-view></ion-nav-view>
+
+      </ion-side-menu-content>
+
+      <!-- Right menu -->
+      <ion-side-menu side="right">
+        <!-- todo put html if needed-->
+      </ion-side-menu>
+
+    </ion-side-menus>
+  </body>
+</html>

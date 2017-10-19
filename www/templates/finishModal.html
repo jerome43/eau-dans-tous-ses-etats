@@ -1,0 +1,26 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" on-touch="closeModal(3)"></button>
+    <h1 class="title">Parcours terminé !</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="theme0Modal complement">
+      <p class="strong">
+        Bravo, vous avez répondu à toutes les questions et terminé le parcours !
+      </p>
+      <p>
+        Votre score :
+      </p>
+      <p class="strong" ng-if="type_parcours=='M' || type_parcours=='A'">
+        &nbsp;&nbsp;adultes : {{score_adulte}} pts
+      </p>
+      <p class="strong" ng-if="type_parcours=='M' || type_parcours=='E'">
+        &nbsp;&nbsp;enfant : {{score_enfant}} pts
+      </p>
+      <p style="padding-top: 1.5em">
+        Vous pouvez réinitialiser le parcours si vous voulez rejouer et répondre à noveau aux questions.
+      </p>
+    </div>
+
+  </ion-content>
+</ion-modal-view>
